@@ -97,7 +97,6 @@ class ChangeText extends React.Component {
         const p = this.props;
         const $$data = this._getData();
         var openChange = $$data.get('openChange');
-
         return (
           <div
             className={ `${ s['ChangeText'] } ${ p.className } ${ openChange ? p.openRootClassName : p.closeRootClassName }` }
