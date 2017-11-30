@@ -1,3 +1,5 @@
+![](https://github.com/BaoHaoYu/react-component-change-text/blob/master/demo/demo.gif)
+
 yesText: propTypes.string,            // 确定按钮文字
 
 cancleText: propTypes.string,         // 取消按钮文字
