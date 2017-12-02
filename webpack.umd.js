@@ -9,7 +9,7 @@ module.exports = {
 
     output: {
         // 输出文件名
-        filename: 'changeText.js',
+        filename: 'change-text.umd.js',
 
         libraryTarget: 'umd',
 
@@ -23,8 +23,7 @@ module.exports = {
     },
 
     target: 'node',
-    externals: ['react', 'immutable', 'prop-types', 'immutable/contrib/cursor'],
-    watch: true,
+    externals: ['react', 'immutable', 'prop-types', 'react-component-bhy-base','immutable/contrib/cursor'],
     module: {
         rules: [
             {

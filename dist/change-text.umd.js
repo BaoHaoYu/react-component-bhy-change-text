@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("prop-types"), require("immutable"), require("immutable/contrib/cursor"));
+		module.exports = factory(require("react"), require("prop-types"), require("immutable"), require("immutable/contrib/cursor"), require("react-component-bhy-base"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "prop-types", "immutable", "immutable/contrib/cursor"], factory);
+		define(["react", "prop-types", "immutable", "immutable/contrib/cursor", "react-component-bhy-base"], factory);
 	else {
-		var a = typeof exports === 'object' ? factory(require("react"), require("prop-types"), require("immutable"), require("immutable/contrib/cursor")) : factory(root["react"], root["prop-types"], root["immutable"], root["immutable/contrib/cursor"]);
+		var a = typeof exports === 'object' ? factory(require("react"), require("prop-types"), require("immutable"), require("immutable/contrib/cursor"), require("react-component-bhy-base")) : factory(root["react"], root["prop-types"], root["immutable"], root["immutable/contrib/cursor"], root["react-component-bhy-base"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -96,6 +96,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_immutable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_immutable_contrib_cursor__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_immutable_contrib_cursor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_immutable_contrib_cursor__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_component_bhy_base__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_component_bhy_base___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_component_bhy_base__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -110,67 +112,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var ChangeText = function (_React$Component) {
-    _inherits(ChangeText, _React$Component);
+
+var ChangeText = function (_Base) {
+    _inherits(ChangeText, _Base);
 
     function ChangeText(props) {
         _classCallCheck(this, ChangeText);
 
         var _this = _possibleConstructorReturn(this, (ChangeText.__proto__ || Object.getPrototypeOf(ChangeText)).call(this, props));
 
-        _this.initData = {
-            data: _this._initData()
-        };
-
-        _this.state = {
-            $$s: Object(__WEBPACK_IMPORTED_MODULE_3_immutable__["fromJS"])(_this.initData)
-        };
-
         _this.$$beforeChange = null;
         return _this;
     }
 
-    // 通用
+    // 初始化数据
 
 
     _createClass(ChangeText, [{
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps(nextProps) {
-            // flagInit 从非true 变成 true 重新执行初始化
-            if (this.props.flagInit !== true && nextProps.flagInit === true) this.setState({ $$s: Object(__WEBPACK_IMPORTED_MODULE_3_immutable__["fromJS"])({ data: this._initData(nextProps) }) });
-        }
-
-        // 优化
-
-    }, {
-        key: 'shouldComponentUpdate',
-        value: function shouldComponentUpdate(nextProps, nextState) {
-            return !Object(__WEBPACK_IMPORTED_MODULE_3_immutable__["is"])(this.state.$$s, nextState.$$s);
-        }
-
-        // 通用
-
-    }, {
-        key: '_getData',
-        value: function _getData() {
-            var _this2 = this;
-
-            return Object(__WEBPACK_IMPORTED_MODULE_4_immutable_contrib_cursor__["from"])(this.state.$$s, ['data'], function ($$newS) {
-                _this2._changeData($$newS);
-            });
-        }
-
-        // 通用
-
-    }, {
-        key: '_changeData',
-        value: function _changeData($$newS) {
-            this.setState({ $$s: $$newS });
-        }
-
-        // 初始化数据
-
-    }, {
         key: '_initData',
         value: function _initData() {
             var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
@@ -223,9 +181,9 @@ var ChangeText = function (_React$Component) {
         // 去顶按钮
 
     }, {
-        key: 'yesButton',
-        value: function yesButton() {
-            var _this3 = this;
+        key: 'oprateButton',
+        value: function oprateButton() {
+            var _this2 = this;
 
             var $$data = this._getData();
             var p = this.props;
@@ -234,7 +192,7 @@ var ChangeText = function (_React$Component) {
                 {
                     onClick: function onClick(e) {
                         e.stopPropagation();
-                        _this3._openChange($$data);
+                        _this2._openChange($$data);
                         p.onOpenChange({ e: e });
                     } },
                 p.openChangeText
@@ -255,7 +213,7 @@ var ChangeText = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this4 = this;
+            var _this3 = this;
 
             var p = this.props;
             var $$data = this._getData();
@@ -283,7 +241,7 @@ var ChangeText = function (_React$Component) {
                         } },
                     $$data.get('value')
                 ),
-                this.yesButton(),
+                this.oprateButton(),
                 openChange && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: __WEBPACK_IMPORTED_MODULE_1__style_index_styl___default.a['ChangeText-open'] },
@@ -292,13 +250,13 @@ var ChangeText = function (_React$Component) {
                         value: $$data.get('value'),
                         placeholder: p.placeholder,
                         onChange: function onChange(e) {
-                            _this4._changeText($$data, e.target.value);
+                            _this3._changeText($$data, e.target.value);
                         }
                     }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'button',
                         { onClick: function onClick(e) {
-                                _this4._clickYes($$data);
+                                _this3._clickYes($$data);
                             } },
                         ' ',
                         p.yesText,
@@ -307,7 +265,7 @@ var ChangeText = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'button',
                         { onClick: function onClick(e) {
-                                _this4._clickCancle($$data);
+                                _this3._clickCancle($$data);
                             } },
                         ' ',
                         p.cancleText,
@@ -319,12 +277,9 @@ var ChangeText = function (_React$Component) {
     }]);
 
     return ChangeText;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+}(__WEBPACK_IMPORTED_MODULE_5_react_component_bhy_base___default.a);
 
 ChangeText.defaultProps = {
-    flagInit: false,
-    watchUpdate: false,
-
     onYes: function onYes() {
         return false;
     },
@@ -347,8 +302,6 @@ ChangeText.defaultProps = {
 };
 
 ChangeText.propTypes = {
-    flagInit: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool, // 初始化
-    watchUpdate: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool, // 监视更新
     yesText: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 确定按钮文字
     cancleText: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 取消按钮文字
     openChangeText: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 修改按钮文字
@@ -363,7 +316,7 @@ ChangeText.propTypes = {
     placeholder: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.any, // 文本框提示
     className: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 根部className
     style: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object, // 根部样式
-    showValue: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object, // 显示默认值
+    showValue: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool, // 显示默认值
     showOpenChange: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool, // 显示修改按钮
     openRootClassName: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 出现文本框的时候，根目录className
     closeRootClassName: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 没有出现文本框的时候，根目录className
@@ -993,6 +946,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
 
 /***/ })
 /******/ ]);

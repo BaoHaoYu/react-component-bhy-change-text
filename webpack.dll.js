@@ -9,6 +9,7 @@ module.exports = {
             'react-dom',
             'immutable',
             'immutable/contrib/cursor',
+            'react-component-bhy-base'
         ]
     },
     module: {

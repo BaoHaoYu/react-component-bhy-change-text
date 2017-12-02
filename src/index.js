@@ -3,8 +3,7 @@ import s from './style/index.styl'
 import propTypes from 'prop-types'
 import {fromJS, is} from 'immutable'
 import {from} from 'immutable/contrib/cursor'
-import Base from './component/base'
-
+import Base from 'react-component-bhy-base'
 class ChangeText extends Base {
     constructor(props) {
         super(props);
