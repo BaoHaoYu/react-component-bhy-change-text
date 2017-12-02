@@ -118,14 +118,8 @@ var ChangeText = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (ChangeText.__proto__ || Object.getPrototypeOf(ChangeText)).call(this, props));
 
-        var p = _this.props;
-
         _this.initData = {
-            data: {
-                value: p.value,
-                openChange: false,
-                hover: false
-            }
+            data: _this._initData()
         };
 
         _this.state = {
@@ -136,7 +130,27 @@ var ChangeText = function (_React$Component) {
         return _this;
     }
 
+    // 通用
+
+
     _createClass(ChangeText, [{
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            // flagInit 从非true 变成 true 重新执行初始化
+            if (this.props.flagInit !== true && nextProps.flagInit === true) this.setState({ $$s: Object(__WEBPACK_IMPORTED_MODULE_3_immutable__["fromJS"])({ data: this._initData(nextProps) }) });
+        }
+
+        // 优化
+
+    }, {
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate(nextProps, nextState) {
+            return !Object(__WEBPACK_IMPORTED_MODULE_3_immutable__["is"])(this.state.$$s, nextState.$$s);
+        }
+
+        // 通用
+
+    }, {
         key: '_getData',
         value: function _getData() {
             var _this2 = this;
@@ -145,10 +159,27 @@ var ChangeText = function (_React$Component) {
                 _this2._changeData($$newS);
             });
         }
+
+        // 通用
+
     }, {
         key: '_changeData',
         value: function _changeData($$newS) {
             this.setState({ $$s: $$newS });
+        }
+
+        // 初始化数据
+
+    }, {
+        key: '_initData',
+        value: function _initData() {
+            var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
+
+            return {
+                value: props.value,
+                openChange: false,
+                hover: false
+            };
         }
 
         // 点击确定
@@ -291,6 +322,9 @@ var ChangeText = function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 ChangeText.defaultProps = {
+    flagInit: false,
+    watchUpdate: false,
+
     onYes: function onYes() {
         return false;
     },
@@ -305,7 +339,6 @@ ChangeText.defaultProps = {
     cancleText: '取消',
     yesText: '确定',
     openChangeText: '修改',
-    type: 'add',
     showValue: true,
     showOpenChange: true,
     openRootClassName: '',
@@ -314,6 +347,8 @@ ChangeText.defaultProps = {
 };
 
 ChangeText.propTypes = {
+    flagInit: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool, // 初始化
+    watchUpdate: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool, // 监视更新
     yesText: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 确定按钮文字
     cancleText: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 取消按钮文字
     openChangeText: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 修改按钮文字
@@ -330,11 +365,9 @@ ChangeText.propTypes = {
     style: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object, // 根部样式
     showValue: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object, // 显示默认值
     showOpenChange: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool, // 显示修改按钮
-    flagInit: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool, // 初始化
     openRootClassName: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 出现文本框的时候，根目录className
     closeRootClassName: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, // 没有出现文本框的时候，根目录className
     hover: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool // 鼠标移过去才显示修改按钮
-
 };
 /* harmony default export */ __webpack_exports__["default"] = (ChangeText);
 

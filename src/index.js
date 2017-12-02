@@ -1,37 +1,23 @@
 import React from 'react';
 import s from './style/index.styl'
 import propTypes from 'prop-types'
-import {fromJS} from 'immutable'
+import {fromJS, is} from 'immutable'
 import {from} from 'immutable/contrib/cursor'
+import Base from './component/base'
 
-class ChangeText extends React.Component {
+class ChangeText extends Base {
     constructor(props) {
         super(props);
-        const p = this.props;
-
-        this.initData = {
-            data: {
-                value: p.value,
-                openChange: false,
-                hover: false,
-            }
-        };
-
-        this.state = {
-            $$s: fromJS(this.initData)
-        };
-
         this.$$beforeChange = null;
     }
 
-    _getData() {
-        return from(this.state.$$s, ['data'], ($$newS) => {
-            this._changeData($$newS)
-        });
-    }
-
-    _changeData($$newS) {
-        this.setState({$$s: $$newS})
+    // 初始化数据
+    _initData(props = this.props) {
+        return {
+            value: props.value,
+            openChange: false,
+            hover: false,
+        }
     }
 
     // 点击确定
@@ -65,7 +51,7 @@ class ChangeText extends React.Component {
     }
 
     // 去顶按钮
-    yesButton() {
+    oprateButton() {
         const $$data = this._getData();
         const p = this.props;
         var btn = (
@@ -119,7 +105,7 @@ class ChangeText extends React.Component {
                 </p>
               ) }
 
-              { this.yesButton() }
+              { this.oprateButton() }
 
               { openChange && (
                 <div className={ s['ChangeText-open'] }>
@@ -156,7 +142,6 @@ ChangeText.defaultProps = {
     cancleText: '取消',
     yesText: '确定',
     openChangeText: '修改',
-    type: 'add',
     showValue: true,
     showOpenChange: true,
     openRootClassName: '',
@@ -179,13 +164,11 @@ ChangeText.propTypes = {
     placeholder: propTypes.any,           // 文本框提示
     className: propTypes.string,          // 根部className
     style: propTypes.object,              // 根部样式
-    showValue: propTypes.object,          // 显示默认值
+    showValue: propTypes.bool,            // 显示默认值
     showOpenChange: propTypes.bool,       // 显示修改按钮
-    flagInit: propTypes.bool,             // 初始化
     openRootClassName: propTypes.string,  // 出现文本框的时候，根目录className
     closeRootClassName: propTypes.string, // 没有出现文本框的时候，根目录className
     hover: propTypes.bool,                // 鼠标移过去才显示修改按钮
-
 };
 export default ChangeText;
 
