@@ -4,7 +4,6 @@
   "scripts": {
     "umd": "webpack --config webpack.umd.js",
     "dll": "webpack --config webpack.dll.js",
-    "demo": "webpack --config webpack.demo.js",
     "webpack-dev-server": "webpack-dev-server"
   },
   "description": "react组件，文本操作",
@@ -50,7 +49,6 @@
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-component-bhy-change-text": "^0.0.3",
-    "webpack": "^3.9.1"
+    "react-component-bhy-base": "^0.0.6"
   }
 }

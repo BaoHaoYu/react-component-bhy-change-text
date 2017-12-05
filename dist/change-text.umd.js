@@ -129,8 +129,8 @@ var ChangeText = function (_Base) {
 
 
     _createClass(ChangeText, [{
-        key: '_initData',
-        value: function _initData() {
+        key: 'initData',
+        value: function initData() {
             var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
 
             return {

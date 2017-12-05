@@ -11,7 +11,7 @@ class ChangeText extends Base {
     }
 
     // 初始化数据
-    _initData(props = this.props) {
+    initData(props = this.props) {
         return {
             value: props.value,
             openChange: false,
@@ -51,7 +51,7 @@ class ChangeText extends Base {
 
     // 去顶按钮
     oprateButton() {
-        const $$data = this._getData();
+        const $$data = this.getData();
         const p = this.props;
         var btn = (
           <button
@@ -80,7 +80,7 @@ class ChangeText extends Base {
 
     render() {
         const p = this.props;
-        const $$data = this._getData();
+        const $$data = this.getData();
         var openChange = $$data.get('openChange');
         return (
           <div
